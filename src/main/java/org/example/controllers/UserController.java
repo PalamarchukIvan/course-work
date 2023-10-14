@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/web")
+@RequestMapping("/users")
 public class UserController {
     private final UserService service;
     @GetMapping("/")
     public String getHomeAllUsers(Model model) {
         model.addAttribute("users", service.findAllUsers());
-        return "home";
+        return "user-list";
     }
 }

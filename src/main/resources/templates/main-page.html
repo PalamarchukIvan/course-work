@@ -6,6 +6,11 @@
     <title>ALL USERS</title>
 </head>
 <body>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
 <table>
     <thead>
     <tr>
@@ -20,7 +25,7 @@
         <td th:text="${article.id}"></td>
         <td th:text="${article.header}"></td>
         <td th:text="${article.body}"></td>
-        <td th:text="${article.author.login}"></td>
+        <td th:text="${article.author.getUsername}"></td>
     </tr>
     </tbody>
 </table>

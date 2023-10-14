@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.controllers.RestControllers;
 
 import lombok.AllArgsConstructor;
 import org.example.model.Article;

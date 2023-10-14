@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/web-articles")
+@RequestMapping("/main")
 public class ArticleController {
     public ArticleService service;
     @GetMapping("/")
     public String getAllArticles(Model model) {
         model.addAttribute("articles", service.findAllArticles());
-        return "articles";
+        return "main-page";
     }
 }
