@@ -7,6 +7,11 @@
 </head>
 <body>
 <div>
+    <form th:action="@{/main/create}" method="get">
+        <input type="submit" value="new article"/>
+    </form>
+</div>
+<div>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
