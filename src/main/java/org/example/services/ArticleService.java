@@ -24,6 +24,11 @@ public class ArticleService {
     public Article findArticleById(long id) {
         return repository.findById(id).orElseThrow(RuntimeException::new);
     }
+
+    public List<Article> findAllArticlesWithUser(long userId) {
+        return repository.findByAuthor_Id(userId);
+    }
+
     public Article putArticle(long id, Article other) {
         Article article = findArticleById(id);
         article.setHeader(other.getHeader());

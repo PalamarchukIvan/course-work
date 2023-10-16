@@ -14,7 +14,7 @@ public class Article {
     private Long id;
     private String header;
     private String body;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JsonIgnore
     private User author;
 }

@@ -21,7 +21,16 @@ public class ArticleController {
     @GetMapping("/")
     public String getAllArticles(Model model) {
         model.addAttribute("articles", articleService.findAllArticles());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User userDetails = (User) authentication.getPrincipal();
+        model.addAttribute("currentUserId", userDetails.getId());
         return "main-page";
+    }
+    @GetMapping("/{id}")
+    public String getAllArticlesWithUser(Model model, @PathVariable Long id) {
+        model.addAttribute("currentUserId", id);
+        model.addAttribute("articles", articleService.findAllArticlesWithUser(id));
+        return "personal-user-articles";
     }
 
     @GetMapping("/create")
@@ -37,4 +46,13 @@ public class ArticleController {
         userService.addArticle(userId, article);
         return "redirect:../main/";
     }
+    @PostMapping("/delete/{id}")
+    public String deleteArticle(@PathVariable Long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User userDetails = (User) authentication.getPrincipal();
+        Long userId = userDetails.getId();
+        articleService.deleteArticle(id);
+        return "redirect:../" + userId;
+    }
+
 }

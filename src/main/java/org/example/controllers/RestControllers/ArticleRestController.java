@@ -3,7 +3,6 @@ package org.example.controllers.RestControllers;
 import lombok.AllArgsConstructor;
 import org.example.model.Article;
 import org.example.services.ArticleService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/article-api")
 public class ArticleRestController {
-
     private final ArticleService service;
     @GetMapping("/")
     public List<Article> getAllArticles() {
