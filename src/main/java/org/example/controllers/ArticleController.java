@@ -28,6 +28,9 @@ public class ArticleController {
     }
     @GetMapping("/{id}")
     public String getAllArticlesWithUser(Model model, @PathVariable Long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User userDetails = (User) authentication.getPrincipal();
+        model.addAttribute("user", userDetails);
         model.addAttribute("currentUserId", id);
         model.addAttribute("articles", articleService.findAllArticlesWithUser(id));
         return "personal-user-articles";

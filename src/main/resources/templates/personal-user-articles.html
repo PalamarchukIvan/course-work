@@ -21,13 +21,31 @@
         <input type="submit" value="See all Users"/>
     </form>
 </div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+<!--        <th>ARTICLES COUNT</th>-->
+    </tr>
+    </thead>
+    <tbody>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.getUsername}"></td>
+<!--        <td th:text="${user.articles.size()}"></td>-->
+    </tbody>
+</table>
+
+<br><br>
+<h1>YOUR ARTICLES</h1>
+<br><br>
 <table>
     <thead>
     <tr>
         <th>ID</th>
         <th>Header</th>
         <th>Body</th>
-        <th>Author-name</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -36,7 +54,6 @@
         <td th:text="${article.id}"></td>
         <td th:text="${article.header}"></td>
         <td th:text="${article.body}"></td>
-        <td th:text="${article.author.getUsername}"></td>
         <td>
             <form th:action="@{'../main/delete/' + ${article.id}}" method="post">
                 <input type="submit" value="Delete article"/>
