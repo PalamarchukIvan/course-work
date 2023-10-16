@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.example.model.Article;
 import org.example.model.User;
 import org.example.services.UserService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +24,7 @@ public class UserRestController {
         return service.createUser(user);
     }
 
-//    @RequestMapping(path = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-//    @PostMapping("/add")
+    @PostMapping("/add")
     public User addArticle(@RequestParam(required = false) Long articleId, @RequestParam long userId, @ModelAttribute Article article) {
         if (articleId == null) {
             return service.addArticle(userId, article);

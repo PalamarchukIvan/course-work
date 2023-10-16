@@ -5,8 +5,7 @@
 </head>
 <body>
 <div th:text="${id}"></div>
-<form th:action="@{'../user-api/add?userId=' + ${userId}}" method="post">
-<!--<form th:action="@{'../main/add?userId=' + ${userId}}" method="post">-->
+<form th:action="@{'../main/add?userId=' + ${userId}}" method="post">
     <label for="header">Заголовок статьи:</label>
     <input type="text" id="header" name="header" required>
 

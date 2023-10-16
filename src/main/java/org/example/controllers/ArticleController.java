@@ -9,10 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -35,7 +32,7 @@ public class ArticleController {
         model.addAttribute("userId", id);
         return "article-builder";
     }
-//    @PostMapping("/add")
+    @PostMapping("/add")
     public String addArticle(@RequestParam long userId, @ModelAttribute Article article) {
         userService.addArticle(userId, article);
         return "redirect:../main/";
