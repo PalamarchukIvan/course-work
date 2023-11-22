@@ -5,6 +5,7 @@ import org.example.dto.ArticleDto;
 import org.example.mapper.ArticleMapper;
 import org.example.model.Article;
 import org.example.services.ArticleService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,5 +22,10 @@ public class ArticleRestController {
     @PostMapping("/")
     public ArticleDto createArticle(@RequestBody Article article) {
         return ArticleMapper.toDto(service.createArticle(article));
+    }
+    @DeleteMapping("/{articleId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteArticle(@PathVariable Long articleId) {
+        service.deleteArticle(articleId);
     }
 }
