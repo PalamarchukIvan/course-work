@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import lombok.AllArgsConstructor;
+import org.example.mapper.ArticleMapper;
 import org.example.model.Article;
 import org.example.model.User;
 import org.example.services.ArticleService;
@@ -20,7 +21,7 @@ public class ArticleController {
 
     @GetMapping("/")
     public String getAllArticles(Model model) {
-        model.addAttribute("articles", articleService.findAllArticles());
+        model.addAttribute("articles", ArticleMapper.toDto(articleService.findAllArticles()));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User userDetails = (User) authentication.getPrincipal();
         model.addAttribute("currentUserId", userDetails.getId());
@@ -32,7 +33,7 @@ public class ArticleController {
         User userDetails = (User) authentication.getPrincipal();
         model.addAttribute("user", userDetails);
         model.addAttribute("currentUserId", id);
-        model.addAttribute("articles", articleService.findAllArticlesWithUser(id));
+        model.addAttribute("articles", ArticleMapper.toDto(articleService.findAllArticlesWithUser(id)));
         return "personal-user-articles";
     }
 
