@@ -7,10 +7,12 @@
 <div th:if="${error != null}">
     <div th:text="${error.message}"></div>
 </div>
-<form th:action="@{/registration}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="register"/></div>
+<form th:action="@{/registration}" th:object="${user}" method="post" enctype="multipart/form-data">
+    <label>Username: <input type="text" th:field="*{username}" required></label><br>
+    <label>Password: <input type="password" th:field="*{password}" required></label><br>
+    <label>Photo: <input type="file" th:field="*{photo}" accept="image/*"></label><br>
+
+    <input type="submit" value="Register">
 </form>
 </body>
 </html>

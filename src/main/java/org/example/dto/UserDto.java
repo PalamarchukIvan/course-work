@@ -2,6 +2,7 @@ package org.example.dto;
 
 import lombok.*;
 import org.example.model.Role;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Set;
@@ -17,5 +18,6 @@ public class UserDto {
     private String password;
     private Boolean isActive;
     private Set<Long> articleIds;
+    private MultipartFile photo;
     private List<Role> role;
 }

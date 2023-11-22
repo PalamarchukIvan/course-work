@@ -59,4 +59,7 @@ public class UserService {
         user.getArticles().add(articleService.findArticleById(articleId));
         return repository.save(user);
     }
+    public byte[] getPhoto(Long id) {
+        return findUserById(id).getPhoto();
+    }
 }
