@@ -33,6 +33,8 @@
         <th>Header</th>
         <th>Body</th>
         <th>Author-name</th>
+        <th>Likes</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -41,6 +43,12 @@
         <td th:text="${article.header}"></td>
         <td th:text="${article.body}"></td>
         <td th:text="${article.author.getUsername}"></td>
+        <td th:text="${article.getLikes().size()}"></td>
+        <td>
+            <form th:action="@{'../main/like/' + ${article.id}}" method="post">
+                <input type="submit" value="Like"/>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

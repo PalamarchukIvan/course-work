@@ -9,6 +9,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
@@ -41,7 +42,7 @@ public interface ArticleMapper {
                 .articleIds(user.getArticles().stream().map(Article::getId).collect(Collectors.toSet()))
                 .build();
     }
-    static List<UserDto> userToUserDto(List<User> users) {
+    static List<UserDto> userToUserDto(Set<User> users) {
         if ( users == null ) {
             return null;
         }

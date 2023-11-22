@@ -59,4 +59,12 @@ public class ArticleController {
         return "redirect:../" + userId;
     }
 
+    @PostMapping("/like/{articleId}")
+    public String likeArticle(@PathVariable Long articleId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User userDetails = (User) authentication.getPrincipal();
+        Long userId = userDetails.getId();
+        articleService.addLike(articleId, userId);
+        return "redirect:../../main/";
+    }
 }

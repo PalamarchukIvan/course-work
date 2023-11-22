@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "articles")
 @Getter
@@ -18,8 +19,8 @@ public class Article {
     private Long id;
     private String header;
     private String body;
-    @OneToMany
-    private List<User> likes;
+    @ManyToMany
+    private Set<User> likes;
     @ManyToOne
     @JsonIgnore
     private User author;

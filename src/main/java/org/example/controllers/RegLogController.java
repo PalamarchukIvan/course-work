@@ -20,7 +20,7 @@ public class RegLogController {
 
     @GetMapping("/")
     public String main() {
-        return "main";
+        return "greeting";
     }
 
     @PostMapping("/login")
