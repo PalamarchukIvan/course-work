@@ -1,26 +1,24 @@
+import logo from './logo.svg';
 import './App.css';
-import HeaderComponent from "./components/HeaderComponent";
-import FooterComponent from "./components/FooterComponent";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import Welcome from "./components/Welcome";
-import DatePicker from "react-datepicker";
-import React from "react";
 
 function App() {
   return (
-      <div>
-          <Router>
-              <div style={{ overflowY: 'auto', overflowX: 'auto', minHeight: '100vh', position: 'relative' }}>
-                  <HeaderComponent />
-                  <div className="container">
-                      <Switch>
-                          <Route path="/" exact component={Welcome}></Route>
-                      </Switch>
-                  </div>
-                  <FooterComponent />
-              </div>
-          </Router>
-      </div>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
 
