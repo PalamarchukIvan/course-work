@@ -14,6 +14,7 @@ public class UserMapper {
                 .photo(userDto.getPhoto().getBytes())
                 .username(userDto.getUsername())
                 .password(userDto.getPassword())
+                .name(userDto.getName())
                 .build();
     }
     public static UserDto toDto(User user) {

@@ -30,6 +30,7 @@ public interface ArticleMapper {
                 .header(article.getHeader())
                 .author(userToUserDto(article.getAuthor()))
                 .likes(userToUserDto(article.getLikes()))
+                .createdDate(article.getCreatedDate())
                 .build();
     }
 
@@ -40,6 +41,7 @@ public interface ArticleMapper {
         return UserDto.builder()
                 .id(user.getId())
                 .role(user.getRole())
+                .name(user.getName())
                 .isActive(true)
                 .username(user.getUsername())
                 .articleIds(user.getArticles().stream().map(Article::getId).collect(Collectors.toSet()))

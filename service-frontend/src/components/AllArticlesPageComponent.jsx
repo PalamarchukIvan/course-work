@@ -55,6 +55,7 @@ class AllArticlesPageComponent extends Component {
                 this.setState({
                     articles: res.data,
                 });
+                console.log(this.state.articles)
                 UserService.getCurrentUser().then(res => {
                     console.log("user data")
                     console.log(res.data)
@@ -82,7 +83,7 @@ class AllArticlesPageComponent extends Component {
                                 Author: {article.author.name}
                             </Card.Subtitle>
                             <Card.Subtitle className="mb-2 text-muted">
-                                Created Date: {article.createdDate}
+                                Created Date: {article.createdDate.replace('T', ' ').replace('Z', ' ').split('.')[0]}
                             </Card.Subtitle>
                             <Link to={`/articles/${article.id}`}>
                                 <Button variant="primary" className="mr-2" style={{backgroundColor: "#05386B"}}>
