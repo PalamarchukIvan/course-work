@@ -108,7 +108,7 @@ class SingleArticleComponent extends Component {
                         </Button>
                         <br />
                         <br />
-                        <a href="/articles" className="btn btn-primary" style={{ textDecoration: 'none' }} > {'<- Back'}</a>
+                        <a href="/articles" className="btn btn-primary text-white" style={{backgroundColor: "#05386B", textDecoration: 'none' }} > {'<- Back'}</a>
                     </Card.Body>
                 </Card>
             </div>
