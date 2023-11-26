@@ -44,6 +44,7 @@ public interface ArticleMapper {
                 .name(user.getName())
                 .isActive(true)
                 .username(user.getUsername())
+                .photoBytes(user.getPhoto())
                 .articleIds(user.getArticles().stream().map(Article::getId).collect(Collectors.toSet()))
                 .build();
     }

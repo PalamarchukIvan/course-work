@@ -96,19 +96,36 @@ class SingleArticleComponent extends Component {
         const LikeButtonText = isLiked ? 'Unlike' : 'Lke';
         return (
             <div>
-                <h1 style={{color: "#05386B"}}>{this.state.article.header}</h1>
+                <h1 style={{ color: "#05386B" }}>{this.state.article.header}</h1>
                 <Card className="mb-3">
                     <Card.Body>
-                        <Card.Subtitle className="mb-2 text-muted">
-                            Author: {this.state.article.author.name == null ? "Anonimus" : this.state.article.author.name}
-                        </Card.Subtitle>
-                        <Card.Text>{this.state.article.body}</Card.Text>
-                        <Button variant={LikeButtonColor} className="mr-2" onClick={this.doLike}>
-                            {LikeButtonText} ({this.state.article.likes.length})
-                        </Button>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            {this.state.article.author.photoBytes &&
+                                <img
+                                    src={`data:image/png;base64,${this.state.article.author.photoBytes}`}
+                                    alt="Author Avatar"
+                                    style={{
+                                        width: '150px',
+                                        height: '150px',
+                                        borderRadius: '50%',  // Make the image round
+                                        border: '4px solid #05386B',  // Add a blue border
+                                        marginRight: '20px',
+                                    }}
+                                />
+                            }
+                            <div>
+                                <Card.Subtitle className="mb-2 text-muted">
+                                    Author: {this.state.article.author.name == null ? "Anonymous" : this.state.article.author.name}
+                                </Card.Subtitle>
+                                <Card.Text>{this.state.article.body}</Card.Text>
+                                <Button variant={LikeButtonColor} className="mr-2" onClick={this.doLike}>
+                                    {LikeButtonText} ({this.state.article.likes.length})
+                                </Button>
+                            </div>
+                        </div>
                         <br />
                         <br />
-                        <a href="/articles" className="btn btn-primary text-white" style={{backgroundColor: "#05386B", textDecoration: 'none' }} > {'<- Back'}</a>
+                        <Link to="/articles" className="btn btn-primary text-white" style={{ backgroundColor: "#05386B", textDecoration: 'none' }} > {'<- Back'}</Link>
                     </Card.Body>
                 </Card>
             </div>
