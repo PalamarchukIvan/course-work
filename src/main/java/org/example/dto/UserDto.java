@@ -20,5 +20,6 @@ public class UserDto {
     private Boolean isActive;
     private Set<Long> articleIds;
     private MultipartFile photo;
+    private byte[] photoBytes;
     private List<Role> role;
 }

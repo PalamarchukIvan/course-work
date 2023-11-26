@@ -1,5 +1,5 @@
 ﻿import axios from "axios";
-const USER_API = "http://localhost:8080/rest/reg-log"
+const USER_API = "http://localhost:8080/user-api"
 class UserService {
     doLogin(user) {
         return axios.post(USER_API + "/login", user, {withCredentials: true})
