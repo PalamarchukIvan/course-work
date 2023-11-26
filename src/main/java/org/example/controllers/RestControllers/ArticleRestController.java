@@ -2,10 +2,14 @@ package org.example.controllers.RestControllers;
 
 import lombok.AllArgsConstructor;
 import org.example.dto.ArticleDto;
+import org.example.dto.UserDto;
 import org.example.mapper.ArticleMapper;
+import org.example.mapper.UserMapper;
 import org.example.model.Article;
+import org.example.model.User;
 import org.example.services.ArticleService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +24,22 @@ public class ArticleRestController {
     public List<ArticleDto> getAllArticles() {
         return ArticleMapper.toDto(service.findAllArticles());
     }
+
+    @GetMapping("/{id}")
+    public ArticleDto getAllArticleById(@PathVariable Long id) {
+        return ArticleMapper.toDto(service.findArticleById(id));
+    }
     @PostMapping("/")
     public ArticleDto createArticle(@RequestBody Article article) {
         return ArticleMapper.toDto(service.createArticle(article));
+    }
+    @GetMapping("/like/{id}")
+    public UserDto doLike(@PathVariable Long id) {
+        return UserMapper.toDto(service.addLike(id, ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()));
+    }
+    @GetMapping("/unlike/{id}")
+    public void undoLike(@PathVariable Long id) {
+        service.removeLike(id, ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
     }
     @DeleteMapping("/{articleId}")
     @PreAuthorize("hasRole('ADMIN')")

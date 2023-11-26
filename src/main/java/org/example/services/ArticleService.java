@@ -8,6 +8,8 @@ import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,6 +19,7 @@ public class ArticleService {
     private final UserRepository userRepository;
     @Transactional
     public Article createArticle(Article article) {
+        article.setCreatedDate(LocalDateTime.now());
         return repository.save(article);
     }
     @Transactional(readOnly = true)
@@ -25,19 +28,27 @@ public class ArticleService {
     }
     @Transactional(readOnly = true)
     public Article findArticleById(long id) {
-        return repository.findById(id).orElseThrow(RuntimeException::new);
+        return repository.findById(id).orElseGet(Article::new);
     }
 
     public List<Article> findAllArticlesWithUser(long userId) {
         return repository.findByAuthor_Id(userId);
     }
 
-    public Article addLike(long articleId, long userId) {
+    public User addLike(long articleId, long userId) {
         Article article = findArticleById(articleId);
         User user = userRepository.findById(userId).orElseThrow();
 
         article.getLikes().add(user);
-        return repository.save(article);
+        repository.save(article);
+        return user;
+    }
+    public void removeLike(long articleId, long userId) {
+        Article article = findArticleById(articleId);
+        User user = userRepository.findById(userId).orElseThrow();
+
+        article.getLikes().remove(user);
+        repository.save(article);
     }
     public void deleteArticle(long id) {
         repository.delete(findArticleById(id));

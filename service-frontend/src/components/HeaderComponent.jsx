@@ -5,7 +5,7 @@ class HeaderComponent extends Component {
         super(props)
 
         this.state = {
-            LOGOUT_LINK: 'http://localhost:8080/logout'
+            
         }
     }
     doLogout() {
@@ -36,7 +36,7 @@ class HeaderComponent extends Component {
                 <nav className="navbar navbar-expand-md navbar-dark">
                     <a className="d-block h1 font-weight-bold ml-5" href="/">DBlog</a>
                     <a className="d-block h2 font-weight-bold ml-5" href="/main">Profile</a>
-                    <a className="d-block h2 font-weight-bold mr-5 ml-auto" href={this.state.LOGOUT_LINK}>Write new Story</a>
+                    <a className="d-block h2 font-weight-bold mr-5 ml-auto" href="/new-article">Write new Story</a>
                 </nav>
             </div>
 

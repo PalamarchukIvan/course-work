@@ -2,6 +2,8 @@ package org.example.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -14,5 +16,6 @@ public class ArticleDto {
     private String header;
     private String body;
     private List<UserDto> likes;
+    private LocalDateTime createdDate;
     private UserDto author;
 }

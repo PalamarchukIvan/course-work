@@ -22,7 +22,7 @@ class ProfileComponent extends Component {
     }
 
     fetchUserData = async () => {
-        this.login == null ? await UserService.getCurrentUser().then((res) => {
+        await UserService.getCurrentUser().then((res) => {
             if (res.config !== null && res.request != null && res.config.url !== res.request.responseURL && res.request.responseURL.includes('/login')) {
                 console.log(res);
                 document.location = res.request.responseURL;
@@ -35,18 +35,7 @@ class ProfileComponent extends Component {
                 console.log('data after => ' );
                 console.log(this.state.user);
             }
-        }) : UserService.getUser(this.login).then((res) => {
-            if (res.config !== null && res.request != null && res.config.url !== res.request.responseURL && res.request.responseURL.includes('/login')) {
-                console.log(res);
-                document.location = res.request.responseURL;
-            } else {
-                console.log(res);
-                console.log('data => ' + res.data);
-                this.setState({
-                    user: res.data,
-                });
-            }
-        });
+        })
     };
 
     render() {

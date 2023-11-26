@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ public class Article {
     private Long id;
     private String header;
     private String body;
+    private LocalDateTime createdDate;
     @ManyToMany
     private Set<User> likes;
     @ManyToOne

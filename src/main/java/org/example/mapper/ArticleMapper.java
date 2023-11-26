@@ -34,6 +34,9 @@ public interface ArticleMapper {
     }
 
     private static UserDto userToUserDto(User user) {
+        if(user == null) {
+            return null;
+        }
         return UserDto.builder()
                 .id(user.getId())
                 .role(user.getRole())
