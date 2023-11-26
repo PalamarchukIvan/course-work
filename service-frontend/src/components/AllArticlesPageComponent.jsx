@@ -72,7 +72,7 @@ class AllArticlesPageComponent extends Component {
 
         return (
             <div>
-                <h1>Article List</h1>
+                <h1 style={{color: "#05386B"}}>Article List</h1>
                 {this.state.articles.map((article, index) => (
                     <Card key={article.id} className="mb-3">
                         <Card.Body>
@@ -85,7 +85,7 @@ class AllArticlesPageComponent extends Component {
                                 Created Date: {article.createdDate}
                             </Card.Subtitle>
                             <Link to={`/articles/${article.id}`}>
-                                <Button variant="primary" className="mr-2">
+                                <Button variant="primary" className="mr-2" style={{backgroundColor: "#05386B"}}>
                                     View Full Article
                                 </Button>
                             </Link>
