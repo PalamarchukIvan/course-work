@@ -62,6 +62,6 @@ public class RegLogController {
             }
         }
 
-        return "redirect:/";
+        return "redirect:/main/";
     }
 }
