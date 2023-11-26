@@ -2,6 +2,7 @@
 import { Button, Card } from 'react-bootstrap';
 import ArticleService from "../services/ArticleService";
 import UserService from "../services/UserService";
+import {Link} from "react-router-dom";
 
 class SingleArticleComponent extends Component {
     constructor(props) {
@@ -95,7 +96,7 @@ class SingleArticleComponent extends Component {
         const LikeButtonText = isLiked ? 'Unlike' : 'Lke';
         return (
             <div>
-                <h1>{this.state.article.header}</h1>
+                <h1 style={{color: "#05386B"}}>{this.state.article.header}</h1>
                 <Card className="mb-3">
                     <Card.Body>
                         <Card.Subtitle className="mb-2 text-muted">
@@ -105,6 +106,9 @@ class SingleArticleComponent extends Component {
                         <Button variant={LikeButtonColor} className="mr-2" onClick={this.doLike}>
                             {LikeButtonText} ({this.state.article.likes.length})
                         </Button>
+                        <br />
+                        <br />
+                        <a href="/articles" className="btn btn-primary" style={{ textDecoration: 'none' }} > {'<- Back'}</a>
                     </Card.Body>
                 </Card>
             </div>
