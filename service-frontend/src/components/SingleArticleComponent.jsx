@@ -77,13 +77,13 @@ class SingleArticleComponent extends Component {
                     article: res.data,
                 });
                 UserService.getCurrentUser().then(res => {
-                    console.log("user data")
-                    console.log(res.data)
-                    this.setState({
-                        currentUserId: res.data.id
-                    })
-                    console.log("id")
-                    console.log(this.state.currentUserId)
+                        console.log("user data")
+                        console.log(res.data)
+                        this.setState({
+                            currentUserId: res.data.id
+                        })
+                        console.log("id")
+                        console.log(this.state.currentUserId)
                 })
             }
         })

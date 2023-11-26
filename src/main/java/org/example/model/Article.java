@@ -18,7 +18,9 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = Integer.MAX_VALUE)
     private String header;
+    @Column(length = Integer.MAX_VALUE)
     private String body;
     private LocalDateTime createdDate;
     @ManyToMany

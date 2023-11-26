@@ -5,6 +5,7 @@ import org.example.model.Article;
 import org.example.model.User;
 import org.example.repository.ArticleRepository;
 import org.example.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ public class ArticleService {
     @Transactional
     public Article createArticle(Article article) {
         article.setCreatedDate(LocalDateTime.now());
+        article.setAuthor(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
         return repository.save(article);
     }
     @Transactional(readOnly = true)

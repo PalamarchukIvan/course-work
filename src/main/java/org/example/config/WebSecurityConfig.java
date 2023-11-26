@@ -89,7 +89,7 @@ public class WebSecurityConfig {
     }
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> repository.findUserByUsername(username);
+        return repository::findUserByUsername;
     }
     @Bean
     public AuthenticationProvider authenticationProvider() {

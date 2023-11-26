@@ -20,6 +20,14 @@ class ArticleService {
             }
         );
     }
+    async createArticle(article) {
+        return axios.post(
+            ARTICLES_REST + "/" ,
+                article, 
+            {withCredentials: true}
+            
+        );
+    }
     doLike(id) {
         return axios.get(
             ARTICLES_REST + "/like/" + id,

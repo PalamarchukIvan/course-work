@@ -8,6 +8,7 @@ class AllArticlesPageComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentUserId: '',
             articles: [
                 {
                     id: '',
@@ -54,19 +55,29 @@ class AllArticlesPageComponent extends Component {
                 this.setState({
                     articles: res.data,
                 });
+                UserService.getCurrentUser().then(res => {
+                    console.log("user data")
+                    console.log(res.data)
+                    this.setState({
+                        currentUserId: res.data.id
+                    })
+                    console.log("id")
+                    console.log(this.state.currentUserId)
+                })
             }
         })
     };
+    
     render() {
 
         return (
             <div>
                 <h1>Article List</h1>
-                {this.state.articles.map((article) => (
+                {this.state.articles.map((article, index) => (
                     <Card key={article.id} className="mb-3">
                         <Card.Body>
                             <Card.Title>{article.header}</Card.Title>
-                            <Card.Text>{article.body.slice(0, 100)}...</Card.Text>
+                            <Card.Text>{article.body.slice(0, 100)}</Card.Text>
                             <Card.Subtitle className="mb-2 text-muted">
                                 Author: {article.author.name}
                             </Card.Subtitle>
@@ -78,9 +89,6 @@ class AllArticlesPageComponent extends Component {
                                     View Full Article
                                 </Button>
                             </Link>
-                            <Button variant="success">
-                                Like ({article.likes.length})
-                            </Button>
                         </Card.Body>
                     </Card>
                 ))}
