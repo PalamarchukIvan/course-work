@@ -25,6 +25,8 @@ public class Article {
     private LocalDateTime createdDate;
     @ManyToMany
     private Set<User> likes;
+    @ManyToMany
+    private Set<User> disLikes;
     @ManyToOne
     @JsonIgnore
     private User author;

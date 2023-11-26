@@ -24,6 +24,17 @@ class SingleArticleComponent extends Component {
                         role: [],
                     }
                 ],
+                disLikes: [
+                    {
+                        id: '',
+                        username: '',
+                        name: '',
+                        password: '',
+                        photoBytes: '',
+                        articleIds: [],
+                        role: [],
+                    }
+                ],
                 createdDate: '',
                 author: {
                     id: '',
@@ -38,6 +49,9 @@ class SingleArticleComponent extends Component {
         }
     }
     doLike = () => {
+        if(this.state.article.disLikes.map(author => author.id).includes(this.state.currentUserId)) {
+            ArticleService.undoDisLike(this.state.article.id)
+        }
         if(this.state.article.likes.map(author => author.id).includes(this.state.currentUserId)) {
             ArticleService.undoLike(this.state.article.id).then(res => {
                 if (res.config !== null && res.request != null && res.config.url !== res.request.responseURL && res.request.responseURL.includes('/login')) {
@@ -61,7 +75,35 @@ class SingleArticleComponent extends Component {
                 }
             })
         }
-    } 
+    }
+    doDisLike = () => {
+        if(this.state.article.likes.map(author => author.id).includes(this.state.currentUserId)) {
+            ArticleService.undoLike(this.state.article.id)
+        }
+        if(this.state.article.disLikes.map(author => author.id).includes(this.state.currentUserId)) {
+            ArticleService.undoDisLike(this.state.article.id).then(res => {
+                if (res.config !== null && res.request != null && res.config.url !== res.request.responseURL && res.request.responseURL.includes('/login')) {
+                    console.log(res);
+                    document.location = res.request.responseURL;
+                } else {
+                    console.log(res);
+                    console.log('data => ' + res.data);
+                    this.getArticle()
+                }
+            })
+        } else {
+            ArticleService.doDisLike(this.state.article.id).then(res => {
+                if (res.config !== null && res.request != null && res.config.url !== res.request.responseURL && res.request.responseURL.includes('/login')) {
+                    console.log(res);
+                    document.location = res.request.responseURL;
+                } else {
+                    console.log(res);
+                    console.log('data => ' + res.data);
+                    this.getArticle()
+                }
+            })
+        }
+    }
     componentDidMount() {
         this.getArticle()
     }
@@ -92,8 +134,11 @@ class SingleArticleComponent extends Component {
 
     render() {
         const isLiked = this.state.article.likes.map(author => author.id).includes(this.state.currentUserId)
+        const isDisLiked = this.state.article.disLikes.map(author => author.id).includes(this.state.currentUserId)
         const LikeButtonColor = isLiked ? 'danger' : 'success';
-        const LikeButtonText = isLiked ? 'Unlike' : 'Lke';
+        const LikeButtonText = isLiked ? 'Liked' : 'Lke';
+        const DisLikeButtonColor = isDisLiked ? '#266b5c' : '#379683';
+        const DisLikeButtonText = isDisLiked ? 'Disliked' : 'Dislike';
         return (
             <div>
                 <h1 style={{ color: "#05386B" }}>{this.state.article.header}</h1>
@@ -120,6 +165,9 @@ class SingleArticleComponent extends Component {
                                 <Card.Text>{this.state.article.body}</Card.Text>
                                 <Button variant={LikeButtonColor} className="mr-2" onClick={this.doLike}>
                                     {LikeButtonText} ({this.state.article.likes.length})
+                                </Button>
+                                <Button style={{backgroundColor: DisLikeButtonColor}} className="mr-2" onClick={this.doDisLike}>
+                                    {DisLikeButtonText} ({this.state.article.disLikes.length})
                                 </Button>
                             </div>
                         </div>

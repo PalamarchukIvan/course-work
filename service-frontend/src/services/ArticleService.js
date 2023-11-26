@@ -44,6 +44,22 @@ class ArticleService {
             }
         );
     }
+    doDisLike(id) {
+        return axios.get(
+            ARTICLES_REST + "/dislike/" + id,
+            {
+                withCredentials: true
+            }
+        );
+    }
+    undoDisLike(id) {
+        return axios.get(
+            ARTICLES_REST + "/undislike/" + id,
+            {
+                withCredentials: true
+            }
+        );
+    }
 }
 
 export default new ArticleService();

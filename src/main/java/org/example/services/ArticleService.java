@@ -52,6 +52,21 @@ public class ArticleService {
         article.getLikes().remove(user);
         repository.save(article);
     }
+    public User addDisLike(long articleId, long userId) {
+        Article article = findArticleById(articleId);
+        User user = userRepository.findById(userId).orElseThrow();
+
+        article.getDisLikes().add(user);
+        repository.save(article);
+        return user;
+    }
+    public void removeDisLike(long articleId, long userId) {
+        Article article = findArticleById(articleId);
+        User user = userRepository.findById(userId).orElseThrow();
+
+        article.getDisLikes().remove(user);
+        repository.save(article);
+    }
     public void deleteArticle(long id) {
         repository.delete(findArticleById(id));
     }

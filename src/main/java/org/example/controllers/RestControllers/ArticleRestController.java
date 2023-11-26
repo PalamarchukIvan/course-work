@@ -41,6 +41,14 @@ public class ArticleRestController {
     public void undoLike(@PathVariable Long id) {
         service.removeLike(id, ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
     }
+    @GetMapping("/dislike/{id}")
+    public UserDto doDisLike(@PathVariable Long id) {
+        return UserMapper.toDto(service.addDisLike(id, ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()));
+    }
+    @GetMapping("/undislike/{id}")
+    public void undoDisLike(@PathVariable Long id) {
+        service.removeDisLike(id, ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
+    }
     @DeleteMapping("/{articleId}")
     @PreAuthorize("hasRole('ADMIN')")
     public void deleteArticle(@PathVariable Long articleId) {

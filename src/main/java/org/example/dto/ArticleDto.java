@@ -16,6 +16,7 @@ public class ArticleDto {
     private String header;
     private String body;
     private List<UserDto> likes;
+    private List<UserDto> disLikes;
     private LocalDateTime createdDate;
     private UserDto author;
 }

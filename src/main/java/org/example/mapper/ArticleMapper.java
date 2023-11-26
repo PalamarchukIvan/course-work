@@ -30,6 +30,7 @@ public interface ArticleMapper {
                 .header(article.getHeader())
                 .author(userToUserDto(article.getAuthor()))
                 .likes(userToUserDto(article.getLikes()))
+                .disLikes(userToUserDto(article.getDisLikes()))
                 .createdDate(article.getCreatedDate())
                 .build();
     }
